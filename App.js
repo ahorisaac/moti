@@ -1,20 +1,28 @@
 import React from "react";
-import { View, StyleSheet, Text, Pressable } from "react-native";
+import { View, StyleSheet, Text, Pressable, Dimensions } from "react-native";
 import { MotiView } from "moti";
+
+const { width, height } = Dimensions.get("screen");
 
 const App = () => {
   const [pressed, setPressed] = React.useState(false);
+  const [y, setY] = React.useState(100);
 
   return (
     <Pressable
       style={styles.container}
       onPress={() => {
-        setPressed(!pressed);
+        // setPressed(!pressed);
+        setY(
+          Math.floor((Math.random() * height) / 2) * Math.random() > 0.5
+            ? -1
+            : 1
+        );
       }}
     >
       <MotiView
         animate={{
-          translateY: pressed ? 100 : 0,
+          translateY: y,
         }}
         style={styles.shape}
       />
