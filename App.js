@@ -7,7 +7,10 @@ const App = () => {
     <View style={styles.container}>
       <MotiView
         from={{ opacity: 0, translateY: -100 }}
-        animate={{ opacity: 1, translateY: 0 }}
+        animate={{
+          opacity: 1,
+          translateY: [0, { value: 100, type: "timing", delay: 500 }, 0, 200],
+        }}
         style={styles.shape}
       />
     </View>
