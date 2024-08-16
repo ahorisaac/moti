@@ -1,29 +1,46 @@
 import React from "react";
 import { View, StyleSheet, Text, Pressable, Dimensions } from "react-native";
-import { MotiView } from "moti";
+import { MotiView, useAnimationState } from "moti";
 
 const { width, height } = Dimensions.get("screen");
 
 const App = () => {
   const [pressed, setPressed] = React.useState(false);
-  const [y, setY] = React.useState(100);
+
+  const fadeInState = useAnimationState({
+    from: {
+      opacity: 0,
+      rotate: "40deg",
+    },
+    to: {
+      opacity: 1,
+      rotate: "0deg",
+    },
+    up: {
+      opacity: 1,
+      scale: 2,
+    },
+  });
+
+  const onPress = () => {
+    if (fadeInState.current === "to") {
+      fadeInState.transitionTo("up");
+    }
+  };
 
   return (
     <Pressable
       style={styles.container}
       onPress={() => {
-        // setPressed(!pressed);
-        setY(
-          Math.floor((Math.random() * height) / 2) * Math.random() > 0.5
-            ? -1
-            : 1
-        );
+        setPressed(!pressed);
       }}
     >
       <MotiView
-        animate={{
-          translateY: y,
-        }}
+        // animate={{
+        //   translateY: pressed ? 100 : 0,
+        // }}
+        state={fadeInState}
+        delay={500}
         style={styles.shape}
       />
     </Pressable>
