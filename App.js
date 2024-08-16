@@ -6,10 +6,15 @@ const App = () => {
   return (
     <View style={styles.container}>
       <MotiView
-        from={{ opacity: 0, translateY: -100 }}
+        from={{ translateY: -20 }}
         animate={{
-          opacity: 1,
-          translateY: [0, { value: 100, type: "timing", delay: 500 }, 0, 200],
+          translateY: 250,
+        }}
+        transition={{
+          type: "timing",
+          loop: false,
+          repeat: 4,
+          repeatReverse: true,
         }}
         style={styles.shape}
       />
@@ -27,7 +32,7 @@ const styles = StyleSheet.create({
   shape: {
     width: 250,
     height: 250,
-    backgroundColor: "cyan",
+    backgroundColor: "#41b872",
     borderRadius: 16,
   },
 });
