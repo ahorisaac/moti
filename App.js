@@ -1,24 +1,24 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 import { MotiView } from "moti";
 
 const App = () => {
+  const [pressed, setPressed] = React.useState(false);
+
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => {
+        setPressed(!pressed);
+      }}
+    >
       <MotiView
-        from={{ translateY: -20 }}
         animate={{
-          translateY: 250,
-        }}
-        transition={{
-          type: "timing",
-          loop: false,
-          repeat: 4,
-          repeatReverse: true,
+          translateY: pressed ? 100 : 0,
         }}
         style={styles.shape}
       />
-    </View>
+    </Pressable>
   );
 };
 
