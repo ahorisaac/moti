@@ -23,9 +23,12 @@ const PresenceApp = () => {
 const Box = ({ bgColor }) => {
   return (
     <MotiView
-      from={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
+      onDidAnimate={(styleProp, finished) => {
+        console.log(`🚀 ~ [${bgColor}]`, { styleProp, finished });
+      }}
+      from={{ opacity: 0, scale: 0.9, width: 125, }}
+      animate={{ opacity: 1, scale: 1, width: 250, }}
+      exit={{ opacity: 0, scale: 0.9, width: 125 }}
       transition={{ type: "timing" }}
       style={[styles.shape, { backgroundColor: bgColor }]}
     />
