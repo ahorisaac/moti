@@ -1,8 +1,29 @@
 import React from "react";
 import { View, StyleSheet, Text, Pressable, Dimensions } from "react-native";
-import { MotiView, useAnimationState } from "moti";
+import { MotiView, useAnimationState, AnimatePresence } from "moti";
 
 const { width, height } = Dimensions.get("screen");
+
+const PresenceApp = () => {
+  const [shown, setShown] = React.useState(true);
+
+  const toggle = () => setShown((state) => !state);
+
+  return (
+    <Pressable onPress={toggle} style={styles.container}>
+      <AnimatePresence>
+        {shown && (
+          <MotiView
+            from={{ opacity: 0, translateY: -20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, scale: 1.5 }}
+            style={styles.shape}
+          />
+        )}
+      </AnimatePresence>
+    </Pressable>
+  );
+};
 
 const App = () => {
   const [pressed, setPressed] = React.useState(false);
@@ -57,9 +78,9 @@ const styles = StyleSheet.create({
   shape: {
     width: 250,
     height: 250,
-    backgroundColor: "#41b872",
+    backgroundColor: "#792bca",
     borderRadius: 16,
   },
 });
 
-export default App;
+export default PresenceApp;
