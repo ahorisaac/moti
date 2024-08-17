@@ -11,26 +11,18 @@ const PresenceApp = () => {
 
   return (
     <Pressable onPress={toggle} style={styles.container}>
-      <AnimatePresence exitBeforeEnter>
-        {shown && <Box key={`792bca`} bgColor="#792bca" />}
-
-        {!shown && <Box key={`17a2b8`} bgColor="#17a2b8" />}
-      </AnimatePresence>
+      <Box from="#0099cc" to={`#ffff00`} />
     </Pressable>
   );
 };
 
-const Box = ({ bgColor }) => {
+const Box = ({ from, to }) => {
   return (
     <MotiView
-      onDidAnimate={(styleProp, finished) => {
-        console.log(`🚀 ~ [${bgColor}]`, { styleProp, finished });
-      }}
-      from={{ opacity: 0, scale: 0.9, width: 125, }}
-      animate={{ opacity: 1, scale: 1, width: 250, }}
-      exit={{ opacity: 0, scale: 0.9, width: 125 }}
-      transition={{ type: "timing" }}
-      style={[styles.shape, { backgroundColor: bgColor }]}
+      from={{ backgroundColor: from }}
+      animate={{ backgroundColor: ["#4f2b40", to, "#840294"] }}
+      transition={{ type: "timing", duration: 3000 }}
+      style={[styles.shape]}
     />
   );
 };
