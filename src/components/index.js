@@ -1,3 +1,4 @@
 import AccordionWrapper from "./Accordion";
+import FlatListGridReveal from "./FlatListGridReveal";
 
-export { AccordionWrapper };
+export { AccordionWrapper, FlatListGridReveal };
